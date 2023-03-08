@@ -11,25 +11,25 @@ export const defaultTheme = {
     family:
       "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
     normal: 400,
-    medium: 500,
+    medium: 600,
     bold: 700,
     sizes: {
-      xsmall: '0.75rem',
-      small: '0.875rem',
-      medium: '1rem',
-      large: '1.125rem',
-      xlarge: '1.25rem',
-      xxlarge: '1.75rem'
+      xsmall: '0.75rem', // 12px
+      small: '0.875rem', // 14px
+      medium: '1rem', // 16px
+      large: '1.125rem', // 18px
+      xlarge: '1.25rem', // 20px
+      xxlarge: '1.75rem' // 28px
     }
   },
   spacings: {
-    xxsmall: '0.625rem',
-    xsmall: '1rem',
-    small: '1.5rem',
-    medium: '2rem',
-    large: '2.5rem',
-    xlarge: '3rem',
-    xxlarge: '3.5rem'
+    xxsmall: '0.625rem', // 10px
+    xsmall: '1rem', // 16px
+    small: '1.5rem', // 24px
+    medium: '2rem', // 32px
+    large: '2.5rem', // 40px
+    xlarge: '3rem', // 48px
+    xxlarge: '3.5rem' // 56px
   },
   border: {
     normal: '4px'
