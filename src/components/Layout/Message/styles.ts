@@ -1,18 +1,13 @@
 import styled, { css } from 'styled-components'
 
 type WrapperProps = {
-  width: number
-  height: number
-  source: string
+  width?: number
+  height?: number
+  source?: string
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({
-    theme,
-    width = 100,
-    height = 100,
-    source = 'src/assets/empty-component.svg'
-  }) => css`
+  ${({ theme, width = 600, height = 600, source }) => css`
     display: flex;
     justify-content: center;
     align-items: center;

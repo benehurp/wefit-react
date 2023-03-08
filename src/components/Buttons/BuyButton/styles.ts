@@ -15,7 +15,8 @@ export const Wrapper = styled(StyledButton)<WrapperProps>`
       margin-right: 24px;
       vertical-align: text-bottom;
       display: inline-block;
-      background: url('src/assets/plus-cart.svg') no-repeat center;
+      background: url('../../../../public/assets/plus-cart.svg') no-repeat
+        center;
       position: relative;
 
       ::after {

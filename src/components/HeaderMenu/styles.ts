@@ -46,6 +46,6 @@ export const ChestSVG = styled.div`
   ${() => css`
     width: 30px;
     height: 26px;
-    background: url('src/assets/chest.svg') no-repeat center;
+    background: url('../../../../public/assets/chest.svg') no-repeat center;
   `}
 `
