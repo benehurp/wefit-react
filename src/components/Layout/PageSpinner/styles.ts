@@ -4,8 +4,8 @@ export const SpinnerPosition = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 98px);
   overflow: hidden;
-  min-height: 30vh;
 
   svg {
     width: 60px;

@@ -21,6 +21,7 @@ export const MiniCart = styled.div`
   ${() => css`
     display: flex;
     align-items: center;
+    cursor: pointer;
   `}
 `
 
@@ -41,9 +42,10 @@ export const Label = styled.div`
   `}
 `
 
-export const ContainerIconSVG = styled.div`
+export const ChestSVG = styled.div`
   ${() => css`
     width: 30px;
-    height: 30px;
+    height: 26px;
+    background: url('src/assets/chest.svg') no-repeat center;
   `}
 `

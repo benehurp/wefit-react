@@ -1,14 +1,29 @@
+import { useUserContextProvider } from '../../contexts/UserContext'
 import { HeaderMenu } from '../HeaderMenu'
+import { Content } from './Content'
 import { PageSpinner } from './PageSpinner'
-import { Wrapper } from './styles'
+import { HomeContent, Wrapper } from './styles'
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const isLoading = true
+export const Layout = ({
+  children,
+  home
+}: {
+  children: React.ReactNode
+  home?: boolean
+}) => {
+  const { productsData } = useUserContextProvider()
+  const { isLoading } = productsData
+
+  const section = home ? (
+    <HomeContent>{children}</HomeContent>
+  ) : (
+    <Content>{children}</Content>
+  )
 
   return (
     <Wrapper>
       <HeaderMenu />
-      {isLoading ? <PageSpinner /> : children}
+      {isLoading ? <PageSpinner /> : section}
     </Wrapper>
   )
 }

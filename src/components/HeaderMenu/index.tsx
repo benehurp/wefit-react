@@ -1,6 +1,4 @@
-import { ContainerIconSVG, Label, Logo, MiniCart, Wrapper } from './styles'
-
-import ChestSVG from '../../assets/chest.svg'
+import { ChestSVG, Label, Logo, MiniCart, Wrapper } from './styles'
 
 export const HeaderMenu = () => {
   return (
@@ -11,9 +9,7 @@ export const HeaderMenu = () => {
           <div className="text">Meu Carrinho</div>
           <div className="counter">0 itens</div>
         </Label>
-        <ContainerIconSVG>
-          <img src={ChestSVG} />
-        </ContainerIconSVG>
+        <ChestSVG />
       </MiniCart>
     </Wrapper>
   )

@@ -4,12 +4,15 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import App from './App'
+import { UserContextProvider } from './contexts/UserContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={defaultTheme}>
-      <App />
-      <GlobalStyles />
-    </ThemeProvider>
+    <UserContextProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <App />
+        <GlobalStyles />
+      </ThemeProvider>
+    </UserContextProvider>
   </React.StrictMode>
 )
