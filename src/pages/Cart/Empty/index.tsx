@@ -8,7 +8,7 @@ export const Empty = () => {
         title={'Parece que não há nada por aqui :('}
         width={448}
         height={265}
-        source={'../../../../public/assets/empty.svg'}
+        source={'assets/empty.svg'}
       />
     </Layout>
   )

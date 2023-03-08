@@ -8,7 +8,7 @@ export const Successful = () => {
         title={'Compra realizada com sucesso!'}
         width={295}
         height={310}
-        source={'../../../../public/assets/successful.svg'}
+        source={'assets/successful.svg'}
       />
     </Layout>
   )

@@ -6,7 +6,7 @@ export const Message = ({
   title,
   width,
   height,
-  source = '../../../../public/assets/empty-component.svg'
+  source = 'assets/empty-component.svg'
 }: {
   title: string
   width?: number
