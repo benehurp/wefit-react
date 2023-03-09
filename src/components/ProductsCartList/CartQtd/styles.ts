@@ -3,11 +3,10 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.td`
   ${({ theme }) => css`
     .group {
-      display: flex;
-      justify-content: center;
+      display: inline-flex;
+      justify-content: flex-start;
       align-items: center;
       gap: ${theme.spacings.xxsmall};
-      width: 120px;
 
       input {
         width: 60px;

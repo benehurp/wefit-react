@@ -31,7 +31,12 @@ export const Label = styled.div`
     margin-right: ${theme.spacings.xxsmall};
 
     .text {
-      font-size: ${theme.font.sizes.small};
+      @media only screen and (min-width: 768px) {
+        font-size: ${theme.font.sizes.small};
+      }
+      @media only screen and (max-width: 767px) {
+        display: none;
+      }
     }
 
     .counter {

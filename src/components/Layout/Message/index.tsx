@@ -4,17 +4,15 @@ import { Wrapper } from './styles'
 
 export const Message = ({
   title,
-  width,
   height,
   source = 'assets/empty-component.svg'
 }: {
   title: string
-  width?: number
   height?: number
   source?: string
 }) => {
   return (
-    <Wrapper width={width} height={height} source={source}>
+    <Wrapper height={height} source={source}>
       <div className="content-title">
         <Text>{title}</Text>
       </div>

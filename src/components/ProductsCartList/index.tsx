@@ -35,6 +35,10 @@ export const ProductsCartList = ({
               </td>
               <CartQtd />
               <td className="sub-total">{formatCurrency(29.9)}</td>
+              <td className="mobile-counter">
+                <CartQtd />
+                <div className="sub-total">{formatCurrency(29.9)}</div>
+              </td>
             </ProductItemRow>
           ))}
         </tbody>

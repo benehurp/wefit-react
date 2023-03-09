@@ -10,16 +10,41 @@ const modifiers = {
       return () => css`
         display: flex;
 
+        @media only screen and (max-width: 767px) {
+          .group {
+            align-items: center;
+            align-self: flex-start;
+
+            .title {
+              margin-right: ${theme.spacings.xsmall};
+            }
+          }
+
+          img {
+            margin-right: ${theme.spacings.xsmall};
+            width: 64px;
+          }
+        }
+
+        @media only screen and (min-width: 768px) {
+          .group {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          img {
+            margin-right: ${theme.spacings.xxlarge};
+            width: 114px;
+          }
+        }
+
         .group {
           display: flex;
-          flex-direction: column;
-          align-items: flex-start;
           justify-content: center;
         }
+
         img {
-          margin-right: ${theme.spacings.xxlarge};
           display: block;
-          width: 114px;
         }
       `
     }

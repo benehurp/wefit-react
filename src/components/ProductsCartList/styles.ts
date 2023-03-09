@@ -11,18 +11,25 @@ export const Wrapper = styled.div`
         width: 100%;
 
         thead {
-          th {
-            text-align: left;
-            color: ${theme.colors.gray};
-            text-transform: uppercase;
-            padding-bottom: ${theme.spacings.small};
-
-            :first-child {
-              width: 50%;
+          @media only screen and (max-width: 767px) {
+            th {
+              display: none;
             }
+          }
+          @media only screen and (min-width: 768px) {
+            th {
+              text-align: left;
+              color: ${theme.colors.gray};
+              text-transform: uppercase;
+              padding-bottom: ${theme.spacings.small};
 
-            :last-child {
-              width: 30%;
+              :first-child {
+                width: 50%;
+              }
+
+              :last-child {
+                width: 30%;
+              }
             }
           }
         }
@@ -35,16 +42,49 @@ export const Wrapper = styled.div`
             font-weight: ${theme.font.bold};
           }
 
+          @media only screen and (max-width: 767px) {
+            .mobile-counter {
+              display: flex;
+              width: calc(100% - 80px);
+              margin-left: 80px;
+              position: absolute;
+              top: 32px;
+              height: 26px;
+
+              .sub-total {
+                line-height: 26px;
+              }
+            }
+          }
+
+          @media only screen and (min-width: 768px) {
+            .mobile-counter {
+              display: none;
+            }
+          }
+
           td {
             color: ${theme.colors.blackText};
             padding-bottom: ${theme.spacings.small};
+            position: relative;
 
-            :first-child {
-              width: 50%;
+            @media only screen and (max-width: 767px) {
+              display: none;
+
+              :first-child {
+                display: block;
+                width: 100%;
+              }
             }
 
-            :last-child {
-              width: 30%;
+            @media only screen and (min-width: 768px) {
+              :first-child {
+                width: 50%;
+              }
+
+              :last-child {
+                width: 30%;
+              }
             }
           }
         }
@@ -62,12 +102,23 @@ export const ProductItemRow = styled.tr`
       content: '';
       height: 20px;
       width: 20px;
-      top: calc(50% - 12px);
       right: 0;
       background: url('assets/trash.svg') no-repeat center;
       position: absolute;
-      transform: translate(0, -50%);
       cursor: pointer;
+    }
+
+    @media only screen and (max-width: 767px) {
+      ::after {
+        top: 0;
+        transform: 0;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      ::after {
+        top: calc(50% - 12px);
+        transform: translate(0, -50%);
+      }
     }
   `}
 `
@@ -76,11 +127,27 @@ export const CheckoutActions = styled.footer`
   ${({ theme }) => css`
     margin-top: ${theme.spacings.small};
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    .finish-button {
-      width: 235px;
+    @media only screen and (max-width: 767px) {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+
+      .finish-button {
+        width: 100%;
+      }
+
+      .totals {
+        margin-bottom: 16px;
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      justify-content: space-between;
+      align-items: center;
+
+      .finish-button {
+        width: 235px;
+      }
     }
 
     .totals {
