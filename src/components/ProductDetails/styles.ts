@@ -63,6 +63,7 @@ const modifiers = {
 export const Wrapper = styled.div<WrapperProps>`
   ${({ theme, isCart }) => css`
     color: ${theme.colors.blackText};
+    position: relative;
 
     ${modifiers.formatCart(theme, { isCart })}
 

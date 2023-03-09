@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { ProductProps } from '../../contexts/types'
 import { useUserContextProvider } from '../../contexts/UserContext'
+import { useWindowSize } from '../../hooks/useWindowSize'
 import { formatCurrency } from '../../utils/formatCurrency'
 import Button from '../Buttons'
 import { ProductDetails } from '../ProductDetails'
@@ -23,7 +24,8 @@ export const ProductsCartList = ({
     productQtd
   } = useUserContextProvider()
   const navigate = useNavigate()
-
+  const { width } = useWindowSize()
+  const mobile = width <= 767 ? false : true
   const disableButton = myCart.length <= 0
 
   function handleClick() {
@@ -33,48 +35,68 @@ export const ProductsCartList = ({
 
   return (
     <Wrapper>
-      <table>
-        <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Qtd</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map(({ id, title, price, image }, index) => (
-            <ProductItemRow key={id}>
-              <td>
-                <ProductDetails
-                  title={title}
-                  image={image}
-                  price={price}
-                  isCart={isCart}
-                />
-              </td>
-              <CartQtd
-                handlePlus={() => addToCart(data[index])}
-                handleMinus={() => removeFromCart(data[index])}
-                initialValue={productQtd(id)}
-              />
-              <td className="sub-total">
-                <span>{formatCurrency(price * productQtd(id))}</span>
-                <TrashIcon onClick={() => removeFromCart(data[index])} />
-              </td>
-              <td className="mobile-counter">
-                {/* <CartQtd
-                  handlePlus={() => addToCart(data[index])}
-                  handleMinus={() => removeFromCart(data[index])}
-                  initialValue={productQtd(id)}
-                /> */}
-                <div className="sub-total">
-                  {formatCurrency(price * productQtd(id))}
-                </div>
-              </td>
-            </ProductItemRow>
-          ))}
-        </tbody>
-      </table>
+      <div className="teste">
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Qtd</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map(({ id, title, price, image }, index) => (
+              <ProductItemRow key={id}>
+                <td>
+                  <ProductDetails
+                    title={title}
+                    image={image}
+                    price={price}
+                    isCart={isCart}
+                  />
+                  {!mobile && (
+                    <>
+                      <div className="trash-on-mobile">
+                        <TrashIcon
+                          onClick={() => removeFromCart(data[index])}
+                        />
+                      </div>
+                      <div className="subtotal-on-mobile">
+                        <CartQtd
+                          handlePlus={() => addToCart(data[index])}
+                          handleMinus={() => removeFromCart(data[index])}
+                          initialValue={productQtd(id)}
+                        />
+                        <div className="group">
+                          <div className="price">
+                            <div className="label">Subtotal</div>
+                            {formatCurrency(price * productQtd(id))}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </td>
+                {mobile && (
+                  <>
+                    <td>
+                      <CartQtd
+                        handlePlus={() => addToCart(data[index])}
+                        handleMinus={() => removeFromCart(data[index])}
+                        initialValue={productQtd(id)}
+                      />
+                    </td>
+                    <td className="sub-total">
+                      <span>{formatCurrency(price * productQtd(id))}</span>
+                      <TrashIcon onClick={() => removeFromCart(data[index])} />
+                    </td>
+                  </>
+                )}
+              </ProductItemRow>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <CheckoutActions>
         <div className="finish-button">
           <Button disabled={disableButton} onClick={handleClick}>
