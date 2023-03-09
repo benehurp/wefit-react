@@ -21,27 +21,3 @@ export const ProductItem = styled.div`
     justify-content: space-between;
   `}
 `
-
-export const Informations = styled.div`
-  ${({ theme }) => css`
-    color: ${theme.colors.blackText};
-
-    img {
-      margin: 0 auto;
-      display: block;
-      margin-bottom: ${theme.spacings.xxsmall};
-      width: 147px;
-    }
-
-    .title {
-      font-size: ${theme.font.sizes.xsmall};
-      font-weight: ${theme.font.bold};
-      line-height: 16px;
-    }
-
-    .price {
-      font-weight: ${theme.font.bold};
-      line-height: 22px;
-    }
-  `}
-`

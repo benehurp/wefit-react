@@ -19,7 +19,8 @@ export const defaultTheme = {
       medium: '1rem', // 16px
       large: '1.125rem', // 18px
       xlarge: '1.25rem', // 20px
-      xxlarge: '1.75rem' // 28px
+      xxlarge: '1.5rem', // 24px
+      xxxlarge: '1.75rem' // 28px
     }
   },
   spacings: {
