@@ -6,7 +6,6 @@ export const Successful = () => {
     <Layout>
       <Message
         title={'Compra realizada com sucesso!'}
-        width={295}
         height={310}
         source={'assets/successful.svg'}
       />
