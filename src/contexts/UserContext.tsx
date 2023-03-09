@@ -3,6 +3,9 @@ import { StateProps, UserContextProps, UserContextProviderProps } from './types'
 
 const UserContext = createContext<UserContextProps | undefined>(undefined)
 
+// const ENV_SERVER_JSON = 'http://localhost:3004/products'
+const ENV_LOCAL = '../../server/db_local.json'
+
 export function UserContextProvider({ children }: UserContextProviderProps) {
   const [productsData, setProductsData] = useState<StateProps>({
     data: null,
@@ -13,7 +16,7 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
   async function fetchData() {
     try {
       setProductsData({ ...productsData, isLoading: true })
-      const response = await fetch('http://localhost:3004/products')
+      const response = await fetch(ENV_LOCAL)
       const data = await response.json()
       setProductsData({ ...productsData, isLoading: false, data })
     } catch (error) {
