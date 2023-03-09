@@ -5,15 +5,13 @@ import { useUserContextProvider } from '../../contexts/UserContext'
 import { Empty } from './Empty'
 
 export const Cart = () => {
-  const { productsData } = useUserContextProvider()
-  const { data } = productsData
-  const itemsCounter = 1
+  const { myCart, count } = useUserContextProvider()
 
-  if (itemsCounter <= 0) return <Empty />
+  if (count <= 0) return <Empty />
 
   return (
     <Layout>
-      <ProductsCartList data={data!} isCart />
+      <ProductsCartList data={myCart!} isCart />
     </Layout>
   )
 }

@@ -1,8 +1,14 @@
 import { Wrapper } from './styles'
 
-export const BuyButton = ({ added }: { added?: boolean }) => {
+type BuyButtonProps = {
+  added?: boolean
+  onClick: () => void
+  countItem: number
+}
+
+export const BuyButton = ({ added, onClick, countItem }: BuyButtonProps) => {
   return (
-    <Wrapper added={added}>
+    <Wrapper added={added} onClick={onClick} countItem={countItem}>
       <span className="icon" />
       <span>{added ? 'Item adicionado' : 'Adicionar ao carrinho'}</span>
     </Wrapper>

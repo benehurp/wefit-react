@@ -7,7 +7,7 @@ export const Empty = () => {
       <Message
         title={'Parece que não há nada por aqui :('}
         height={265}
-        source={'assets/empty.svg'}
+        source={'/assets/empty.svg'}
       />
     </Layout>
   )

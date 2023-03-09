@@ -4,15 +4,15 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import App from './App'
-import { UserContextProvider } from './contexts/UserContext'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <UserContextProvider>
-      <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme}>
+      <BrowserRouter>
         <App />
         <GlobalStyles />
-      </ThemeProvider>
-    </UserContextProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>
 )

@@ -3,6 +3,7 @@ export type ProductProps = {
   title: string
   price: number
   image: string
+  quantity?: number = 0
 }
 
 export type UserContextProviderProps = {
@@ -17,4 +18,13 @@ export type StateProps = {
 
 export type UserContextProps = {
   productsData: StateProps
+  count: number
+  myCart: ProductProps[]
+  addToCart: (item: ProductProps) => void
+  removeFromCart: (item: ProductProps) => void
+  isSelected: (itemId: number) => boolean
+  cartTotals: () => number
+  afterSuccessClean: () => void
+  hadSuccess: boolean
+  productQtd: (itemId: number) => number
 }

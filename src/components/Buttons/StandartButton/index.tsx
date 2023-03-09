@@ -1,9 +1,19 @@
 import { StyledButton } from '../styles'
 
-export const StandardButton = ({
-  children = 'Undefined Text'
-}: {
+type StandardButtonProps = {
   children: React.ReactNode
-}) => {
-  return <StyledButton>{children}</StyledButton>
+  onClick: () => void
+  disabled?: boolean
+}
+
+export const StandardButton = ({
+  children = 'Undefined Text',
+  onClick,
+  disabled
+}: StandardButtonProps) => {
+  return (
+    <StyledButton onClick={onClick} disabled={disabled}>
+      {children}
+    </StyledButton>
+  )
 }

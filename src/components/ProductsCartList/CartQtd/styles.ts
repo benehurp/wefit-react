@@ -40,11 +40,11 @@ export const Wrapper = styled.td`
       }
 
       .remove {
-        background: url('assets/minus-action.svg');
+        background: url('/assets/minus-action.svg');
       }
 
       .add {
-        background: url('assets/plus-action.svg');
+        background: url('/assets/plus-action.svg');
       }
     }
   `}

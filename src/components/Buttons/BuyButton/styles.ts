@@ -3,10 +3,11 @@ import { StyledButton } from '../styles'
 
 type WrapperProps = {
   added?: boolean
+  countItem: number
 }
 
 export const Wrapper = styled(StyledButton)<WrapperProps>`
-  ${({ theme, added }) => css`
+  ${({ theme, added, countItem }) => css`
     ${added && `background: ${theme.colors.green}`};
 
     .icon {
@@ -15,11 +16,11 @@ export const Wrapper = styled(StyledButton)<WrapperProps>`
       margin-right: 24px;
       vertical-align: text-bottom;
       display: inline-block;
-      background: url('assets/plus-cart.svg') no-repeat center;
+      background: url('/assets/plus-cart.svg') no-repeat center;
       position: relative;
 
       ::after {
-        content: '0';
+        content: '${String(countItem)}';
         position: absolute;
         right: -12px;
         font-size: ${theme.font.sizes.xsmall};

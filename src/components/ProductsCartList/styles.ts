@@ -1,5 +1,19 @@
 import styled, { css } from 'styled-components'
 
+type TrashIconProps = {
+  onClick: () => void
+}
+
+export const TrashIcon = styled.span<TrashIconProps>`
+  ${() => css`
+    height: 20px;
+    width: 20px;
+    right: 0;
+    background: url('assets/trash.svg') no-repeat center;
+    position: absolute;
+    cursor: pointer;
+  `}
+`
 export const Wrapper = styled.div`
   ${({ theme }) =>
     css`
@@ -98,7 +112,7 @@ export const ProductItemRow = styled.tr`
     border-radius: ${theme.border.normal};
     position: relative;
 
-    ::after {
+    /* ::after {
       content: '';
       height: 20px;
       width: 20px;
@@ -119,7 +133,7 @@ export const ProductItemRow = styled.tr`
         top: calc(50% - 12px);
         transform: translate(0, -50%);
       }
-    }
+    } */
   `}
 `
 

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import Button from '../../Buttons'
 import { Text } from '../../Text'
 import { Wrapper } from './styles'
@@ -5,12 +6,14 @@ import { Wrapper } from './styles'
 export const Message = ({
   title,
   height,
-  source = 'assets/empty-component.svg'
+  source = '/assets/empty-component.svg'
 }: {
   title: string
   height?: number
   source?: string
 }) => {
+  const navigate = useNavigate()
+
   return (
     <Wrapper height={height} source={source}>
       <div className="content-title">
@@ -18,7 +21,7 @@ export const Message = ({
       </div>
       <div className="content-img" />
       <div className="back-button">
-        <Button>Voltar</Button>
+        <Button onClick={() => navigate('/')}>Voltar</Button>
       </div>
     </Wrapper>
   )

@@ -17,5 +17,9 @@ export const StyledButton = styled.button`
     :hover {
       opacity: 0.7;
     }
+
+    :disabled {
+      background: ${theme.colors.gray};
+    }
   `}
 `
