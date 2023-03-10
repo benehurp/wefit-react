@@ -24,10 +24,18 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
 
   async function fetchData() {
     try {
-      setProductsData({ ...productsData, isLoading: true })
+      setProductsData((prevData) => ({
+        ...prevData,
+        isLoading: true
+      }))
       const response = await fetch(ENVIROMENT_VERCEL_PROD)
       const data = await response.json()
-      setProductsData({ ...productsData, isLoading: false, data })
+      setProductsData((prevData) => ({
+        ...prevData,
+        isLoading: false,
+        data,
+        error: ''
+      }))
     } catch (error) {
       if (error instanceof Error) {
         setProductsData({
@@ -46,60 +54,39 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
   }
 
   function handleInputChange(value: number, product: ProductProps) {
-    const productExists = myCart.reduce((accumulator, item) => {
-      if (item.id === product.id) {
-        item.quantity = value
-        return true
-      }
-      return accumulator
-    }, false)
-
-    if (!productExists) {
-      setMyCart((prevState) => [...prevState, { ...product, quantity: 1 }])
-    } else {
-      setMyCart((prevState) => [...prevState])
-    }
+    const updatedCart = myCart.map((item) =>
+      item.id === product.id ? { ...item, quantity: value } : item
+    )
+    setMyCart(updatedCart)
   }
 
   function addToCart(product: ProductProps) {
-    const productExists = myCart.reduce((accumulator, item) => {
-      if (item.id === product.id) {
-        item.quantity! += product.quantity = 1
-        return true
-      }
-      return accumulator
-    }, false)
-
-    if (!productExists) {
-      setMyCart((prevState) => [...prevState, { ...product, quantity: 1 }])
+    const updatedCart = myCart.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity! + 1 } : item
+    )
+    const productExists = updatedCart.some(
+      (item) => item.id === product.id && item.quantity! > 0
+    )
+    if (productExists) {
+      setMyCart(updatedCart)
     } else {
-      setMyCart((prevState) => [...prevState])
+      setMyCart([...updatedCart, { ...product, quantity: 1 }])
     }
   }
 
   function decrementCart(product: ProductProps) {
-    const updatedCart: ProductProps[] = myCart.reduce(
-      (accumulator: ProductProps[], item: ProductProps) => {
-        if (item.id === product.id) {
-          if (item.quantity === 1) {
-            return accumulator
-          } else {
-            item.quantity! -= 1
-          }
-        }
-        return [...accumulator, item]
-      },
-      []
-    )
-
+    const updatedCart = myCart.map((item) => {
+      if (item.id === product.id && item.quantity! > 1) {
+        return { ...item, quantity: item.quantity! - 1 }
+      }
+      return item
+    })
     setMyCart(updatedCart)
   }
 
   function removeFromCart(productId: number) {
-    setMyCart((current) => {
-      const itemsToRemove = current.filter((f) => f.id !== productId)
-      return itemsToRemove
-    })
+    const updatedCart = myCart.filter((item) => item.id !== productId)
+    setMyCart(updatedCart)
   }
 
   function individualProductCount(productId: number) {
@@ -108,13 +95,9 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
   }
 
   function isSelected(productId: number) {
-    const result = myCart.find(
-      (active) => active.id === productId && active.quantity! > 0
-    )
+    const item = myCart.find((active) => active.id === productId)
 
-    if (result) return true
-
-    return false
+    return Boolean(item?.quantity)
   }
 
   function cartTotals() {
