@@ -20,11 +20,13 @@ export type UserContextProps = {
   productsData: StateProps
   count: number
   myCart: ProductProps[]
-  addToCart: (item: ProductProps) => void
-  removeFromCart: (item: ProductProps) => void
-  isSelected: (itemId: number) => boolean
+  hadSuccess: boolean
+  addToCart: (product: ProductProps) => void
+  decrementCart: (product: ProductProps) => void
+  removeFromCart: (productId: number) => void
+  isSelected: (productId: number) => boolean
   cartTotals: () => number
   afterSuccessClean: () => void
-  hadSuccess: boolean
-  productQtd: (itemId: number) => number
+  individualProductCount: (productId: number) => number
+  handleInputChange: (value: number, product: ProductProps) => void
 }

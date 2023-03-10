@@ -17,11 +17,13 @@ export const ProductsCartList = ({
 }) => {
   const {
     addToCart,
-    removeFromCart,
+    decrementCart,
     cartTotals,
     myCart,
     afterSuccessClean,
-    productQtd
+    individualProductCount,
+    removeFromCart,
+    handleInputChange
   } = useUserContextProvider()
   const navigate = useNavigate()
   const { width } = useWindowSize()
@@ -31,6 +33,23 @@ export const ProductsCartList = ({
   function handleClick() {
     navigate('/cart/success')
     afterSuccessClean()
+  }
+
+  function handleRemove(id: number) {
+    const count = individualProductCount(id)
+
+    if (count > 1) {
+      const text = `Você tem certesa que deseja remover os ${count} produtos do carrinho?`
+      if (confirm(text)) {
+        removeFromCart(id)
+      }
+    } else {
+      removeFromCart(id)
+    }
+  }
+
+  function handleInput(e: number, product: ProductProps) {
+    handleInputChange(e, product)
   }
 
   return (
@@ -57,20 +76,19 @@ export const ProductsCartList = ({
                   {!mobile && (
                     <>
                       <div className="trash-on-mobile">
-                        <TrashIcon
-                          onClick={() => removeFromCart(data[index])}
-                        />
+                        <TrashIcon onClick={() => handleRemove(id)} />
                       </div>
                       <div className="subtotal-on-mobile">
                         <CartQtd
                           handlePlus={() => addToCart(data[index])}
-                          handleMinus={() => removeFromCart(data[index])}
-                          initialValue={productQtd(id)}
+                          handleMinus={() => decrementCart(data[index])}
+                          initialValue={individualProductCount(id)}
+                          onInputChange={(e) => handleInput(e, data[index])}
                         />
                         <div className="group">
                           <div className="price">
                             <div className="label">Subtotal</div>
-                            {formatCurrency(price * productQtd(id))}
+                            {formatCurrency(price * individualProductCount(id))}
                           </div>
                         </div>
                       </div>
@@ -82,13 +100,16 @@ export const ProductsCartList = ({
                     <td>
                       <CartQtd
                         handlePlus={() => addToCart(data[index])}
-                        handleMinus={() => removeFromCart(data[index])}
-                        initialValue={productQtd(id)}
+                        handleMinus={() => decrementCart(data[index])}
+                        initialValue={individualProductCount(id)}
+                        onInputChange={(e) => handleInput(e, data[index])}
                       />
                     </td>
                     <td className="sub-total">
-                      <span>{formatCurrency(price * productQtd(id))}</span>
-                      <TrashIcon onClick={() => removeFromCart(data[index])} />
+                      <span>
+                        {formatCurrency(price * individualProductCount(id))}
+                      </span>
+                      <TrashIcon onClick={() => handleRemove(id)} />
                     </td>
                   </>
                 )}

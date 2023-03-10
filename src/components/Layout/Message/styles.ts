@@ -15,7 +15,7 @@ export const Wrapper = styled.div<WrapperProps>`
     width: 100%;
 
     .content-title {
-      margin-top: 40px;
+      margin-top: 64px;
       width: 60%;
     }
 
@@ -29,7 +29,7 @@ export const Wrapper = styled.div<WrapperProps>`
 
     .back-button {
       width: 180px;
-      margin-bottom: 40px;
+      margin-bottom: 64px;
     }
   `}
 `

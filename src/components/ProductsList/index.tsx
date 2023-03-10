@@ -5,7 +5,8 @@ import { ProductDetails } from '../ProductDetails'
 import { ProductItem, Wrapper } from './styles'
 
 export const ProductList = ({ data }: { data: ProductProps[] }) => {
-  const { addToCart, isSelected, productQtd } = useUserContextProvider()
+  const { addToCart, isSelected, individualProductCount } =
+    useUserContextProvider()
 
   return (
     <Wrapper>
@@ -15,7 +16,7 @@ export const ProductList = ({ data }: { data: ProductProps[] }) => {
           <BuyButton
             added={isSelected(id)}
             onClick={() => addToCart({ id, title, price, image })}
-            countItem={productQtd(id)}
+            countItem={individualProductCount(id)}
           />
         </ProductItem>
       ))}
