@@ -6,7 +6,7 @@ type WrapperProps = {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({ theme, height = 600, source }) => css`
+  ${({ theme, height = 380, source }) => css`
     display: flex;
     justify-content: center;
     align-items: center;
